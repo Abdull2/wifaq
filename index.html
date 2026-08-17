@@ -1,0 +1,282 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>وِفَاق — خدمة توفيق للزواج</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#123A34">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#F6F8F6; --card:#FFFFFF; --line:#DFE7E1; --ink:#22302B; --soft:#66796F;
+  --deep:#123A34; --wash:#E6EEE9; --gold:#A98A45; --r:16px;
+}
+[data-theme="dark"]{
+  --bg:#0F1613; --card:#18211D; --line:#26332C; --ink:#E6EDE8; --soft:#93A69B;
+  --deep:#8FBFA9; --wash:#1E2A24; --gold:#C7A968;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);direction:rtl;
+  font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;padding-bottom:96px}
+.wrap{max-width:540px;margin:0 auto;padding:0 14px}
+.hide{display:none!important}
+button,input,select,textarea{font-family:inherit;color:inherit}
+
+header{background:var(--card);border-bottom:1px solid var(--line);padding:14px 0}
+.hrow{display:flex;justify-content:space-between;align-items:center;gap:10px}
+h1{font-family:Amiri,serif;font-size:26px;margin:0;color:var(--deep)}
+.tag{font-size:11.5px;color:var(--soft);margin-top:2px}
+.icon{width:36px;height:36px;border-radius:11px;border:1px solid var(--line);background:var(--card);
+  font-size:15px;cursor:pointer;display:grid;place-items:center;flex:none}
+
+.notice{background:var(--wash);border:1px solid var(--line);border-radius:14px;
+  padding:12px 14px;margin-top:12px;font-size:12.5px;color:var(--soft);line-height:1.9}
+
+.seg{display:flex;gap:8px;margin-top:12px}
+.seg button{flex:1;padding:11px 0;border-radius:13px;border:1px solid var(--line);
+  background:var(--card);color:var(--soft);font-size:13.5px;cursor:pointer}
+.seg button[aria-current="true"]{background:var(--deep);border-color:var(--deep);color:#fff}
+[data-theme="dark"] .seg button[aria-current="true"]{color:#0F1613}
+
+.filters{display:flex;gap:7px;overflow-x:auto;padding:12px 2px 2px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filters select,.filters input{background:var(--card);border:1px solid var(--line);border-radius:999px;
+  padding:8px 12px;font-size:12.5px;flex:none}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:15px;margin-top:11px}
+.card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.ref{font-family:Amiri,serif;font-size:20px;color:var(--deep)}
+.badge{font-size:10.5px;border:1px solid var(--line);border-radius:999px;padding:4px 9px;
+  color:var(--soft);white-space:nowrap}
+.badge.on{color:var(--gold);border-color:var(--gold)}
+.meta{font-size:12.5px;color:var(--soft);margin-top:6px;line-height:1.9}
+.rows{margin-top:11px;border-top:1px solid var(--line);padding-top:11px;display:grid;gap:7px}
+.row{display:flex;gap:8px;font-size:13px;line-height:1.8}
+.row b{color:var(--soft);font-weight:400;min-width:76px;flex:none;font-size:12px}
+.acts{display:flex;gap:8px;margin-top:12px}
+.acts a,.acts button{flex:1;text-align:center;text-decoration:none;padding:10px;border-radius:12px;
+  border:1px solid var(--line);background:transparent;color:var(--deep);font-size:13px;cursor:pointer}
+.acts .go{background:var(--deep);border-color:var(--deep);color:#fff}
+[data-theme="dark"] .acts .go{color:#0F1613}
+
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-top:10px}
+.step .n{width:26px;height:26px;border-radius:8px;background:var(--wash);color:var(--deep);
+  display:grid;place-items:center;font-size:12px;float:inline-start;margin-inline-end:9px}
+.step .t{font-size:14.5px;font-weight:600}
+.step .d{font-size:13px;color:var(--soft);line-height:1.9;margin-top:5px}
+.qrow{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:12px 14px;
+  margin-top:9px;font-size:13.5px;line-height:1.8;display:flex;gap:9px}
+.qrow span.n{color:var(--gold);flex:none}
+
+label{display:block;font-size:12.5px;color:var(--soft);margin:12px 0 6px}
+input[type=text],input[type=number],select,textarea{width:100%;background:var(--card);
+  border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-size:14.5px}
+textarea{min-height:70px;resize:vertical;line-height:1.9}
+.primary{width:100%;padding:13px;border-radius:13px;border:0;background:var(--deep);color:#fff;
+  font-size:14.5px;font-weight:600;cursor:pointer;margin-top:16px}
+[data-theme="dark"] .primary{color:#0F1613}
+.empty{text-align:center;color:var(--soft);font-size:13px;padding:26px 14px;line-height:1.9}
+
+nav{position:fixed;inset-inline:0;bottom:0;background:var(--card);border-top:1px solid var(--line);
+  padding:7px 0 calc(7px + env(safe-area-inset-bottom))}
+nav div{max-width:540px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:5px;padding:0 12px}
+nav button{border:0;background:none;color:var(--soft);font-size:11.5px;padding:7px 0 5px;border-radius:12px;
+  cursor:pointer;display:grid;gap:3px;justify-items:center}
+nav button em{font-style:normal;font-size:16px}
+nav button[aria-current="true"]{color:var(--deep);background:var(--wash)}
+.toast{position:fixed;bottom:86px;inset-inline:0;text-align:center;font-size:12.5px;color:var(--deep);
+  opacity:0;transition:.3s;pointer-events:none;z-index:40}
+.toast.on{opacity:1}
+</style>
+
+<header><div class="wrap hrow">
+  <div><h1 id="app-name">وِفَاق</h1><div class="tag" id="app-tag"></div></div>
+  <button class="icon" id="b-theme">◐</button>
+</div></header>
+
+<div class="wrap">
+
+<div id="v-list">
+  <div class="notice" id="notice"></div>
+  <div class="seg">
+    <button data-g="f" aria-current="true">أبحث عن زوجة</button>
+    <button data-g="m">أبحث عن زوج</button>
+  </div>
+  <div class="filters">
+    <select id="f-marital"><option value="">الحالة: الكل</option></select>
+    <select id="f-city"><option value="">المكان: الكل</option></select>
+    <input type="number" id="f-min" placeholder="السن من" style="width:104px">
+    <input type="number" id="f-max" placeholder="إلى" style="width:84px">
+  </div>
+  <div id="cards"></div>
+</div>
+
+<div id="v-steps" class="hide">
+  <div class="notice">خطوات مرتّبة تحفظ الجميع وتختصر الطريق، من أول الرغبة إلى العقد.</div>
+  <div id="steps"></div>
+</div>
+
+<div id="v-q" class="hide">
+  <div class="notice">أسئلة يُستحسن الاتفاق عليها قبل إتمام الخطبة — تُسأل عبر الوسيط أو في اللقاء بحضور المحرم.</div>
+  <div id="qs"></div>
+</div>
+
+<div id="v-form" class="hide">
+  <div class="notice">املأ البيانات ثم اضغط «إرسال للوسيط» — يُنشأ نص جاهز ويُفتح التواصل. لا تُحفظ بياناتك في أي مكان آخر.</div>
+  <div class="card">
+    <label>أنا</label>
+    <select id="i-g"><option value="m">رجل يبحث عن زوجة</option><option value="f">امرأة تبحث عن زوج</option></select>
+    <label>السن</label><input type="number" id="i-age">
+    <label>المكان</label><input type="text" id="i-city" placeholder="المحافظة والحي">
+    <label>الحالة الاجتماعية</label>
+    <select id="i-marital">
+      <option>أعزب / بكر</option><option>مطلّق</option><option>مطلّقة</option>
+      <option>أرمل</option><option>أرملة</option><option>متزوج ويطلب أخرى</option></select>
+    <label>عدد الأولاد (إن وُجد)</label><input type="text" id="i-kids" placeholder="لا يوجد">
+    <label>العمل والمؤهل</label><input type="text" id="i-job">
+    <label>الحالة الدينية</label>
+    <textarea id="i-deen" placeholder="الصلاة، حفظ القرآن، طلب العلم، الحجاب أو اللحية…"></textarea>
+    <label>عن نفسي وأسرتي</label><textarea id="i-about"></textarea>
+    <label>السكن</label><input type="text" id="i-house" placeholder="مستقل / مع الأهل / مرن">
+    <label>المواصفات المطلوبة</label><textarea id="i-wants"></textarea>
+    <label>ولي الأمر (للمرأة) — الاسم وصلة القرابة ورقمه</label>
+    <input type="text" id="i-wali" placeholder="مثال: الوالد — ٠١٠…">
+    <label>من يزكّيك (شخص يعرفك ويعرفه الوسيط)</label>
+    <input type="text" id="i-zakia">
+    <button class="primary" id="send">إرسال للوسيط</button>
+  </div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<nav><div>
+  <button data-v="list" aria-current="true"><em>◫</em>البطاقات</button>
+  <button data-v="steps"><em>◈</em>الخطوات</button>
+  <button data-v="q"><em>؟</em>أسئلة</button>
+  <button data-v="form"><em>✎</em>سجّل</button>
+</div></nav>
+
+<script>
+const store={
+ async get(k){ if(window.storage){try{const r=await window.storage.get(k,false);return r?JSON.parse(r.value):null}catch{return null}}
+   const v=localStorage.getItem(k);return v?JSON.parse(v):null },
+ async set(k,v){ if(window.storage){try{await window.storage.set(k,JSON.stringify(v),false);return}catch{}}
+   localStorage.setItem(k,JSON.stringify(v)) }
+};
+const toast=m=>{const t=document.getElementById('toast');t.textContent=m;
+  t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1500)};
+const AR=n=>Number(n).toLocaleString('ar-EG');
+const esc=s=>String(s||'').replace(/</g,'&lt;');
+
+let D={config:{},profiles:[],steps:[],questions:[]}, want='f', cfg={};
+
+function fillFilters(){
+  const ms=[...new Set(D.profiles.map(p=>p.marital))];
+  const cs=[...new Set(D.profiles.map(p=>p.city))];
+  document.getElementById('f-marital').innerHTML='<option value="">الحالة: الكل</option>'+
+    ms.map(x=>`<option>${esc(x)}</option>`).join('');
+  document.getElementById('f-city').innerHTML='<option value="">المكان: الكل</option>'+
+    cs.map(x=>`<option>${esc(x)}</option>`).join('');
+}
+function renderCards(){
+  const mar=document.getElementById('f-marital').value;
+  const city=document.getElementById('f-city').value;
+  const mn=+document.getElementById('f-min').value||0;
+  const mx=+document.getElementById('f-max').value||200;
+  const list=D.profiles.filter(p=>p.g===want && p.status!=='مخفي'
+    && (!mar||p.marital===mar) && (!city||p.city===city) && p.age>=mn && p.age<=mx);
+  const base=(cfg.contact||'').replace(/\?.*$/,'');
+  document.getElementById('cards').innerHTML= list.length? list.map(p=>{
+    const dn=p.deen||{};
+    const deen=[dn.salah,dn.quran,dn.study,dn.other].filter(Boolean).map(esc).join(' · ');
+    const msg=encodeURIComponent('السلام عليكم، أرغب في التقدّم للبطاقة رقم '+p.id);
+    return `<div class="card">
+      <div class="top"><div>
+        <div class="ref">${esc(p.id)}</div>
+        <div class="meta">${AR(p.age)} سنة · ${esc(p.marital)} · ${esc(p.city)}</div>
+      </div><span class="badge ${p.status==='متاح'?'on':''}">${esc(p.status)}</span></div>
+      <div class="rows">
+        <div class="row"><b>الديانة</b><span>${deen||'—'}</span></div>
+        <div class="row"><b>العمل</b><span>${esc(p.job)||'—'}${p.edu?' — '+esc(p.edu):''}</span></div>
+        <div class="row"><b>السكن</b><span>${esc(p.housing)||'—'}</span></div>
+        <div class="row"><b>نبذة</b><span>${esc(p.about)||'—'}</span></div>
+        <div class="row"><b>يطلب</b><span>${esc(p.wants)||'—'}</span></div>
+      </div>
+      <div class="acts">
+        <a class="go" href="${base}?text=${msg}" target="_blank" rel="noopener">أرغب في التقدّم</a>
+        <button data-save="${esc(p.id)}">حفظ</button>
+      </div></div>`}).join('')
+    : '<div class="empty">لا توجد بطاقات مطابقة حاليًا.<br>جرّب توسيع الفلاتر أو راجع لاحقًا.</div>';
+}
+['f-marital','f-city','f-min','f-max'].forEach(id=>
+  document.getElementById(id).addEventListener('input',renderCards));
+document.querySelector('.seg').onclick=e=>{const b=e.target.closest('button'); if(!b)return;
+  want=b.dataset.g;
+  document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-current',x.dataset.g===want));
+  renderCards() };
+document.getElementById('cards').onclick=async e=>{
+  const b=e.target.closest('button[data-save]'); if(!b)return;
+  const s=(await store.get('saved'))||[]; const id=b.dataset.save;
+  if(!s.includes(id)){ s.push(id); await store.set('saved',s); toast('حُفظت البطاقة '+id) }
+  else toast('محفوظة بالفعل') };
+
+function renderSteps(){
+  document.getElementById('steps').innerHTML=D.steps.map((s,i)=>
+    `<div class="step"><span class="n">${AR(i+1)}</span>
+      <div class="t">${esc(s.t)}</div><div class="d">${esc(s.d)}</div></div>`).join('');
+}
+function renderQs(){
+  document.getElementById('qs').innerHTML=D.questions.map((q,i)=>
+    `<div class="qrow"><span class="n">${AR(i+1)}.</span><span>${esc(q)}</span></div>`).join('');
+}
+
+document.getElementById('send').onclick=()=>{
+  const g=document.getElementById('i-g').value;
+  const v=id=>document.getElementById(id).value.trim();
+  if(!v('i-age')||!v('i-city')){ toast('أكمل السن والمكان على الأقل'); return }
+  const txt='السلام عليكم ورحمة الله، أرغب في التسجيل بخدمة '+(cfg.name||'التوفيق')+':\n\n'+
+    '• '+(g==='m'?'رجل يبحث عن زوجة':'امرأة تبحث عن زوج')+'\n'+
+    '• السن: '+v('i-age')+'\n'+
+    '• المكان: '+v('i-city')+'\n'+
+    '• الحالة: '+v('i-marital')+'\n'+
+    '• الأولاد: '+(v('i-kids')||'لا يوجد')+'\n'+
+    '• العمل والمؤهل: '+v('i-job')+'\n'+
+    '• الحالة الدينية: '+v('i-deen')+'\n'+
+    '• عني وعن أسرتي: '+v('i-about')+'\n'+
+    '• السكن: '+v('i-house')+'\n'+
+    '• المواصفات المطلوبة: '+v('i-wants')+'\n'+
+    '• ولي الأمر: '+(v('i-wali')||'—')+'\n'+
+    '• التزكية: '+(v('i-zakia')||'—');
+  try{ navigator.clipboard?.writeText(txt) }catch{}
+  const base=(cfg.contact||'').replace(/\?.*$/,'');
+  toast('نُسخت بياناتك — يُفتح التواصل الآن');
+  setTimeout(()=>window.open(base+'?text='+encodeURIComponent(txt),'_blank'),400);
+};
+
+document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{
+  const v=b.dataset.v;
+  ['list','steps','q','form'].forEach(x=>document.getElementById('v-'+x).classList.toggle('hide',x!==v));
+  document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-current',x.dataset.v===v));
+  scrollTo({top:0,behavior:'smooth'}) });
+document.getElementById('b-theme').onclick=async()=>{
+  const t=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',t); await store.set('theme',t) };
+
+(async function(){
+  const th=await store.get('theme'); if(th) document.documentElement.setAttribute('data-theme',th);
+  try{ D=await (await fetch('./data.json?v='+Date.now())).json() }catch{}
+  cfg=D.config||{};
+  document.getElementById('app-name').textContent=cfg.name||'وِفَاق';
+  document.getElementById('app-tag').textContent=cfg.tagline||'';
+  document.getElementById('notice').textContent=cfg.note||'';
+  fillFilters(); renderCards(); renderSteps(); renderQs();
+  if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+})();
+</script>
